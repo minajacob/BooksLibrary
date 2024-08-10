@@ -15,7 +15,9 @@ declare module App.Library {
         publishing_history: number[];
     }
     
-    export interface IAuthor extends ISharedElement { }
+    export interface IAuthor extends ISharedElement {
+        birth_date: string;
+    }
     export interface ISubject extends ISharedElement { }
     export interface IPeople extends ISharedElement { }
     export interface IPlace extends ISharedElement { }

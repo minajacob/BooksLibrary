@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>Author Details</h2>
+<mat-dialog-content>
+  <h3 class="mb-3">{{ model.name }}</h3>
+  <div class="d-flex flex-column flex-md-row align-items-center">
+    <img src="https://covers.openlibrary.org/a/olid/{{ model.cover_id }}-M.jpg" alt="{{ model.name }}" class="img-thumbnail mb-3">
+    <div class="ms-3">
+        <p><b>Birth Date:</b> {{ model.birth_date }}</p>
+        <p><b>Top Work:</b> {{ model.top_work }}</p>
+        <p><b>Work Count:</b> {{ model.work_count }}</p>
+
+        @for (sub of model.top_subjects; track $index) {
+            <span class="badge text-bg-info me-1 mb-2">{{ sub }}</span>
+        }
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" class="btn btn-outline-primary">Thanks</button>
+  <!-- <button mat-button [mat-dialog-close]="animal()" cdkFocusInitial>Ok</button> -->
+</mat-dialog-actions>

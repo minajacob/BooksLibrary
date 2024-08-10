@@ -8,16 +8,16 @@
     } @else {
         <div class="row">
             @for (book of model.books; track $index) {
-                <div class="col-4 mb-3">
+                <div class="col-md-4 col-12 mb-3">
                     <mat-card class="shadow">
                         <mat-card-header>
                             <mat-card-title-group>
-                                <img mat-card-image loading="lazy" src="https://covers.openlibrary.org/b/id/{{ book.cover_id }}-S.jpg" >
+                                <img class="align-self-start" mat-card-image loading="lazy" src="https://covers.openlibrary.org/b/id/{{ book.cover_id }}-S.jpg" >
                                 <mat-card-title>{{ book.title }}</mat-card-title>
                                 <mat-card-subtitle>{{ book.first_publish_year }}</mat-card-subtitle>
                                 <mat-card-subtitle>
                                     @for (author of book.authors; track $index) {
-                                        <a [routerLink]="'/authors/'+ author.key">{{ author.name }}</a>
+                                        <a href="javascript:void(0)" (click)="getAuthorDetails(author)">{{ author.name }}</a>
                                     }
                                 </mat-card-subtitle>
                             </mat-card-title-group>
