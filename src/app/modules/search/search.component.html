@@ -1,0 +1,14 @@
+<mat-form-field appearance="outline">
+    <!-- <mat-label>Search</mat-label> -->
+    <input matInput placeholder="Title, Subject, Author">
+    <!-- <mat-icon matSuffix>sentiment_very_satisfied</mat-icon> -->
+    <mat-form-field matSuffix>
+        <mat-label>Favorite food</mat-label>
+        <mat-select>
+            <mat-option [value]="1">Title</mat-option>
+            <mat-option [value]="2">Subject</mat-option>
+            <mat-option [value]="2">Author</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-hint>Hint</mat-hint>
+</mat-form-field>

@@ -1,1 +1,46 @@
-<p>home-page works!</p>
+
+<div class="container mt-5">
+
+    @if (model.$loading()) {
+        <div class="position-absolute top-50 start-50 translate-middle">
+            <mat-spinner></mat-spinner>
+        </div>
+    } @else {
+        <div class="row">
+            @for (book of model.books; track $index) {
+                <div class="col-4 mb-3">
+                    <mat-card class="shadow">
+                        <mat-card-header>
+                            <mat-card-title-group>
+                                <img mat-card-image loading="lazy" src="https://covers.openlibrary.org/b/id/{{ book.cover_id }}-S.jpg" >
+                                <mat-card-title>{{ book.title }}</mat-card-title>
+                                <mat-card-subtitle>{{ book.first_publish_year }}</mat-card-subtitle>
+                                <mat-card-subtitle>
+                                    @for (author of book.authors; track $index) {
+                                        <a [routerLink]="'/authors/'+ author.key">{{ author.name }}</a>
+                                    }
+                                </mat-card-subtitle>
+                            </mat-card-title-group>
+                        </mat-card-header>
+                        <mat-card-actions align="end" class="px-3">
+                            <a href="javascript:void(0)" mat-button>More</a>
+                            <span class="px-2" >|</span>
+                            <a href="javascript:void(0)" mat-button>Wishlist</a>
+                        </mat-card-actions>
+                    </mat-card>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<!-- <mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title> Australian Shepherd</mat-card-title>
+        <mat-card-subtitle>Herding group</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <a mat-button>Learn More</a>
+    </mat-card-actions>
+</mat-card>
+<br> -->
