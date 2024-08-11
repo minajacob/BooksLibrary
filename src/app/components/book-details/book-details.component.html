@@ -1,4 +1,4 @@
-<mat-card class="shadow">
+<mat-card class="shadow border h-100 book-card">
     <mat-card-header>
         <mat-card-title-group>
             <img class="align-self-start" (click)="getBookDetails(book())" mat-card-image loading="lazy" src="https://covers.openlibrary.org/b/id/{{ book().cover_id }}-S.jpg" >
@@ -6,14 +6,16 @@
                 <a href="javascript:void(0)" (click)="getBookDetails(book())">{{ book().title }}</a>
             </mat-card-title>
             <mat-card-subtitle>{{ book().first_publish_year }}</mat-card-subtitle>
-            <mat-card-subtitle>
-                @for (author of book().authors; track $index) {
-                    <a href="javascript:void(0)" (click)="getAuthorDetails(author)">{{ author.name }}</a>
-                }
-            </mat-card-subtitle>
         </mat-card-title-group>
     </mat-card-header>
-    <mat-card-actions align="end" class="px-3">
+    <mat-card-content>
+        <div class="text-truncate w-100">
+            @for (author of book().authors; track $index) {
+                <a href="javascript:void(0)" class="me-2" (click)="getAuthorDetails(author)">{{ author.name }}</a>
+            }
+        </div>
+    </mat-card-content>
+    <mat-card-actions align="end" class="px-3 position-absolute bottom-0 end-0">
         <a href="javascript:void(0)" (click)="getBookDetails(book())" mat-button>More</a>
         <span class="px-2" >|</span>
         <a href="javascript:void(0)" mat-button>Wishlist</a> 

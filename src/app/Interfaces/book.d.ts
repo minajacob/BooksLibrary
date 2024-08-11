@@ -39,10 +39,10 @@ declare module App.Library {
         title:         string;
         edition_count: number;
         authors:       IBookAuthor[];
-        has_fulltext:  boolean;
-        ia:            string;
+        // has_fulltext:  boolean;
+        // ia:            string;
         cover_id:      number;
-        covers: number[];
+        // covers: number[];
         first_publish_year: number;
     }
     

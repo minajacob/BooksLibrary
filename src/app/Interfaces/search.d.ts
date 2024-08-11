@@ -31,6 +31,7 @@ declare module App.Library {
 
     export interface IBookDoc {
       author_name:            string[];
+      author_key:            string[];
       cover_i:                number;
       edition_count:          number;
       first_publish_year:     number;
