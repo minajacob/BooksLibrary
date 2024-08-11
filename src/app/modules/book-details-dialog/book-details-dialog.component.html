@@ -1,1 +1,33 @@
-<p>book-details-dialog works!</p>
+<h2 mat-dialog-title>Book Details</h2>
+<mat-dialog-content class="">
+  
+  @if (model.$loading()) {
+    <div class="d-flex justify-content-center m-5 p-5">
+      <mat-spinner></mat-spinner>
+  </div>
+  } @else {
+    <h3 class="mb-3">{{ model.book.title }}</h3>
+    <div class="d-flex flex-column flex-md-row align-items-center">
+      <img src="https://covers.openlibrary.org/b/id/{{ model.book.cover_i }}-M.jpg" alt="{{ model.book.title }}" class="img-thumbnail mb-3">
+      <div class="ms-3">
+          <p><b>First Publish:</b> {{ model.book.first_publish_year }}</p>
+          <p><b>Author/s:</b> {{ model.book.author_name.join(' | ') }}</p>
+          <p><b>Edition Count:</b> {{ model.book.edition_count }}</p>
+          <p><b>No. of Pages:</b> {{ model.book.number_of_pages_median }}</p>
+  
+          <button class="btn d-flex" (click)="addRemoveWishList()" [ngClass]="{ 'btn-outline-primary': !model.$addedToWishlist(), 'btn-success': model.$addedToWishlist() }">
+              @if (model.$addedToWishlist()) {
+                <span>Remove from Wishlist</span>
+                <mat-icon class="ms-3 ">check_circle</mat-icon>
+              } @else {
+                <span>Add to Wishlist</span>
+              }
+          </button>
+      </div>
+    </div>
+  }  
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" class="btn btn-outline-primary">Thanks</button>
+  <!-- <button mat-button [mat-dialog-close]="animal()" cdkFocusInitial>Ok</button> -->
+</mat-dialog-actions>

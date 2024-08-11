@@ -1,10 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BooksLibraryService {
+
+  $wishlistChanged = new Subject<void>();
 
   apiURL = 'https://openlibrary.org';
 
@@ -24,6 +27,16 @@ export class BooksLibraryService {
   getAuthorDetailsByName(name: string) {
     const url = `${this.apiURL}/search/authors.json?q=${name}`;
     return this.$http.get<App.Library.ISearchAuthor>(url);
+  }
+
+  getBookDetails(bookKey: string) {
+    const url = `${this.apiURL}${bookKey}.json`;
+    return this.$http.get<App.Library.IBook>(url);
+  }
+
+  getBookDetailsByTitle(title: string) {
+    const url = `${this.apiURL}/search.json?q=${title}&fields=key,title,author_name,first_publish_year,cover_i,edition_count,number_of_pages_median`;
+    return this.$http.get<App.Library.ISearchBook>(url);
   }
 
 }

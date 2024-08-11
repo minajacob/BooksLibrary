@@ -18,5 +18,25 @@ declare module App.Library {
       work_count: number;
       _version_: number;
     }
+
+    export interface ISearchBook {
+      numFound:      number;
+      start:         number;
+      numFoundExact: boolean;
+      docs:          IBookDoc[];
+      num_found:     number;
+      q:             string;
+      offset:        null;
+    }
+
+    export interface IBookDoc {
+      author_name:            string[];
+      cover_i:                number;
+      edition_count:          number;
+      first_publish_year:     number;
+      key:                    string;
+      number_of_pages_median: number;
+      title:                  string;
+    }
 }
 

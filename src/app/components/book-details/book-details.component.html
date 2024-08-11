@@ -1,0 +1,24 @@
+<mat-card class="shadow">
+    <mat-card-header>
+        <mat-card-title-group>
+            <img class="align-self-start" (click)="getBookDetails(book())" mat-card-image loading="lazy" src="https://covers.openlibrary.org/b/id/{{ book().cover_id }}-S.jpg" >
+            <mat-card-title>
+                <a href="javascript:void(0)" (click)="getBookDetails(book())">{{ book().title }}</a>
+            </mat-card-title>
+            <mat-card-subtitle>{{ book().first_publish_year }}</mat-card-subtitle>
+            <mat-card-subtitle>
+                @for (author of book().authors; track $index) {
+                    <a href="javascript:void(0)" (click)="getAuthorDetails(author)">{{ author.name }}</a>
+                }
+            </mat-card-subtitle>
+        </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-actions align="end" class="px-3">
+        <a href="javascript:void(0)" (click)="getBookDetails(book())" mat-button>More</a>
+        <span class="px-2" >|</span>
+        <a href="javascript:void(0)" mat-button>Wishlist</a> 
+        @if ($addedToWishlist()) {
+            <span class="text-success"> <mat-icon class="ms-1 mt-1">check_circle</mat-icon></span>
+        }
+    </mat-card-actions>
+</mat-card>

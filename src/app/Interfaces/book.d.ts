@@ -42,6 +42,7 @@ declare module App.Library {
         has_fulltext:  boolean;
         ia:            string;
         cover_id:      number;
+        covers: number[];
         first_publish_year: number;
     }
     

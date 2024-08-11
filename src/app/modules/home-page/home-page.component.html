@@ -9,25 +9,7 @@
         <div class="row">
             @for (book of model.books; track $index) {
                 <div class="col-md-4 col-12 mb-3">
-                    <mat-card class="shadow">
-                        <mat-card-header>
-                            <mat-card-title-group>
-                                <img class="align-self-start" mat-card-image loading="lazy" src="https://covers.openlibrary.org/b/id/{{ book.cover_id }}-S.jpg" >
-                                <mat-card-title>{{ book.title }}</mat-card-title>
-                                <mat-card-subtitle>{{ book.first_publish_year }}</mat-card-subtitle>
-                                <mat-card-subtitle>
-                                    @for (author of book.authors; track $index) {
-                                        <a href="javascript:void(0)" (click)="getAuthorDetails(author)">{{ author.name }}</a>
-                                    }
-                                </mat-card-subtitle>
-                            </mat-card-title-group>
-                        </mat-card-header>
-                        <mat-card-actions align="end" class="px-3">
-                            <a href="javascript:void(0)" mat-button>More</a>
-                            <span class="px-2" >|</span>
-                            <a href="javascript:void(0)" mat-button>Wishlist</a>
-                        </mat-card-actions>
-                    </mat-card>
+                    <app-book-details [book]="book"></app-book-details>
                 </div>
             }
         </div>
