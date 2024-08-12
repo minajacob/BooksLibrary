@@ -23,7 +23,7 @@ export class HomePageComponent implements OnInit {
   }
 
   getBooks() {
-    this.books.getBooks('love').subscribe((data) => {
+    this.books.getBooks('Finance').subscribe((data) => {
       this.model.books = data.works;
       this.model.$loading.set(false);
     });
