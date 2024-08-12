@@ -15,12 +15,25 @@
             }
         </div>
     </mat-card-content>
+    
+    @if (showRemoveFromWishlist()) {
+        <mat-card-actions align="start" class="px-3 position-absolute bottom-0 start-0">
+            <a class="px-0 btn btn-link d-flex text-danger" (click)="removeFormWishlist()">
+                <mat-icon class="me-1">delete</mat-icon> Remove from Wishlist
+            </a>
+        </mat-card-actions>
+    }
+
     <mat-card-actions align="end" class="px-3 position-absolute bottom-0 end-0">
         <a href="javascript:void(0)" (click)="getBookDetails(book())" mat-button>More</a>
-        <span class="px-2" >|</span>
-        <a href="javascript:void(0)" mat-button>Wishlist</a> 
-        @if ($addedToWishlist()) {
-            <span class="text-success"> <mat-icon class="ms-1 mt-1">check_circle</mat-icon></span>
+
+        @if (!showRemoveFromWishlist()) {
+            <span class="px-2" >|</span>
+            <a href="javascript:void(0)" mat-button [routerLink]="'/wishlist'">Wishlist</a> 
+            @if ($addedToWishlist()) {
+                <span class="text-success"> <mat-icon class="ms-1 mt-1">check_circle</mat-icon></span>
+            }
         }
+        
     </mat-card-actions>
 </mat-card>

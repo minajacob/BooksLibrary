@@ -7,11 +7,12 @@ import { Constants } from '../../+model/constants';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { addRemoveBookToStorage, checkIfAddedToWishlist } from '../../+model/utility';
+import {MatSnackBar, MatSnackBarModule} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-book-details-dialog',
   standalone: true,
-  imports: [CommonModule, MatDialogModule, MatProgressSpinnerModule, MatIconModule],
+  imports: [CommonModule, MatDialogModule, MatProgressSpinnerModule, MatIconModule, MatSnackBarModule],
   templateUrl: './book-details-dialog.component.html',
   styleUrl: './book-details-dialog.component.scss'
 })
@@ -21,6 +22,7 @@ export class BookDetailsDialogComponent implements OnInit {
   readonly data = inject<IBookDetailsDialogData>(MAT_DIALOG_DATA);
   readonly dataModel = model(this.data);
   readonly librarySvc = inject(BooksLibraryService);
+  private readonly _snackBar = inject(MatSnackBar);
 
   model = new BookDetailsDialogModel();
 
@@ -48,6 +50,11 @@ export class BookDetailsDialogComponent implements OnInit {
     const added = addRemoveBookToStorage(this.model.book.key, this.model.book.title);
     this.model.$addedToWishlist.set(added);
     this.librarySvc.$wishlistChanged.next();
+    if (added) {
+      this._snackBar.open('Book added to wishlist', 'Ok');
+    } else {
+      this._snackBar.open('Book removed from wishlist', 'Ok');
+    }
   }
 
 

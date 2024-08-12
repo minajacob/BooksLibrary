@@ -4,11 +4,12 @@ import { Constants } from '../../+model/constants';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BookDetailsComponent } from '../../components/book-details/book-details.component';
 import { forkJoin } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-wishlist',
   standalone: true,
-  imports: [ MatProgressSpinnerModule, BookDetailsComponent ],
+  imports: [ MatProgressSpinnerModule, BookDetailsComponent, MatSnackBarModule ],
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.scss'
 })
@@ -20,11 +21,17 @@ export class WishlistComponent implements OnInit {
 
   $loading = signal<boolean>(true);
 
-  constructor(private librarySvc: BooksLibraryService) { }
+  constructor(private librarySvc: BooksLibraryService, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.getWishlist();
     this.getBooksDetails();
+  }
+
+  bookRemoved(book: App.Library.IBook) {
+    this.$wishlist = this.$wishlist.filter((w) => w.key !== book.key);
+    this.booksList = this.booksList.filter((b) => b.key !== book.key);
+    this._snackBar.open('Book removed from wishlist', 'Ok');
   }
 
   private getWishlist() {
