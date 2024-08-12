@@ -35,7 +35,7 @@ export class BooksLibraryService {
   }
 
   getBookDetailsByTitle(title: string) {
-    const url = `${this.apiURL}/search.json?q=${title}&fields=key,title,author_name,first_publish_year,cover_i,edition_count,number_of_pages_median,author_key`;
+    const url = `${this.apiURL}/search.json?q=${title}&fields=key,title,author_name,first_publish_year,cover_i,edition_count,number_of_pages_median,author_key&limit=1000`;
     return this.$http.get<App.Library.ISearchBook>(url);
   }
 

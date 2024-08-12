@@ -11,7 +11,7 @@
       <img src="https://covers.openlibrary.org/b/id/{{ model.book.cover_i }}-M.jpg" alt="{{ model.book.title }}" class="img-thumbnail mb-3">
       <div class="ms-3">
           <p><b>First Publish:</b> {{ model.book.first_publish_year }}</p>
-          <p><b>Author/s:</b> {{ model.book.author_name.join(' | ') }}</p>
+          <p><b>Author/s:</b> {{ model.book.author_name ? model.book.author_name.join(' | '): ' - - - - ' }}</p>
           <p><b>Edition Count:</b> {{ model.book.edition_count }}</p>
           <p><b>No. of Pages:</b> {{ model.book.number_of_pages_median }}</p>
   
